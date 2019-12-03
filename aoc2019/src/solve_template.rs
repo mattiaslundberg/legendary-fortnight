@@ -1,14 +1,17 @@
-use std::fs::read;
+use std::fs::File;
+use std::io::{BufRead, BufReader, Result};
 
 fn one() -> std::io::Result<()> {
-    let data = read(format!("input.txt"))?;
+    let file = File::open(format!("src/day1/input.txt"))?;
+    for line in BufReader::new(file).lines() {}
 
     println!("{}", "TODO");
     Ok(())
 }
 
 fn two() -> std::io::Result<()> {
-    let data = read(format!("input.txt"))?;
+    let file = File::open(format!("src/day1/input.txt"))?;
+    for line in BufReader::new(file).lines() {}
 
     println!("{}", "TODO");
     Ok(())
