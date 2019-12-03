@@ -1,12 +1,10 @@
-use std::fs::{create_dir, read, write};
+use std::fs::{create_dir, read, write, OpenOptions};
+use std::io::Write;
 use structopt::StructOpt;
 
 #[derive(Debug, StructOpt)]
 #[structopt(name = "aoc2019")]
 struct Opt {
-    #[structopt(short, long)]
-    generate: bool,
-
     #[structopt(name = "day", required = true)]
     day: u32,
 }
@@ -14,11 +12,18 @@ struct Opt {
 fn main() -> std::io::Result<()> {
     let opt = Opt::from_args();
 
-    if opt.generate {
-        create_dir(format!("src/day{}/", opt.day))?;
-        let content = read(format!("src/solve_template.rs"))?;
-        write(format!("src/day{}/solve.rs", opt.day), content)?;
-        write(format!("src/day{}/input.txt", opt.day), "")?;
-    }
+    create_dir(format!("src/day{}/", opt.day))?;
+    let content = read(format!("src/solve_template.rs"))?;
+    write(format!("src/day{}/solve.rs", opt.day), content)?;
+    write(format!("src/day{}/input.txt", opt.day), "")?;
+
+    let mut file = OpenOptions::new().append(true).open("Cargo.toml")?;
+    file.write(
+        format!(
+            "\n[[bin]]\nname = \"day{}\"\n path = \"src/day{}/solve.rs\"\n",
+            opt.day, opt.day
+        )
+        .as_bytes(),
+    )?;
     Ok(())
 }
