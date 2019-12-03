@@ -1,23 +1,23 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader, Result};
 
-fn one() -> std::io::Result<()> {
-    let file = File::open(format!("src/day1/input.txt"))?;
+fn one() -> Result<()> {
+    let file = File::open(format!("src/day{day}/input.txt"))?;
     for line in BufReader::new(file).lines() {}
 
     println!("{}", "TODO");
     Ok(())
 }
 
-fn two() -> std::io::Result<()> {
-    let file = File::open(format!("src/day1/input.txt"))?;
+fn two() -> Result<()> {
+    let file = File::open(format!("src/day{day}/input.txt"))?;
     for line in BufReader::new(file).lines() {}
 
     println!("{}", "TODO");
     Ok(())
 }
 
-fn main() -> std::io::Result<()> {
+fn main() -> Result<()> {
     one()?;
     two()?;
     Ok(())

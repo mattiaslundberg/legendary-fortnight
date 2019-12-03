@@ -13,8 +13,13 @@ fn main() -> std::io::Result<()> {
     let opt = Opt::from_args();
 
     create_dir(format!("src/day{}/", opt.day))?;
-    let content = read(format!("src/solve_template.rs"))?;
-    write(format!("src/day{}/solve.rs", opt.day), content)?;
+    let content = String::from_utf8(read(format!("src/solve_template.rs"))?).unwrap();
+    write(
+        format!("src/day{}/solve.rs", opt.day),
+        content
+            .as_str()
+            .replace("{day}", format!("{}", opt.day).as_str()),
+    )?;
     write(format!("src/day{}/input.txt", opt.day), "")?;
 
     let mut file = OpenOptions::new().append(true).open("Cargo.toml")?;
