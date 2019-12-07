@@ -24,3 +24,7 @@ name = "day2"
 [[bin]]
 name = "day3"
  path = "src/day3/solve.rs"
+
+[[bin]]
+name = "day4"
+ path = "src/day4/solve.rs"
