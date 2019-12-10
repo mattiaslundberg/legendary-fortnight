@@ -8,6 +8,7 @@ edition = "2018"
 
 [dependencies]
 structopt = "0.3"
+permutohedron = "0.2.4"
 
 [[bin]]
 name = "generate"
@@ -32,3 +33,11 @@ name = "day4"
 [[bin]]
 name = "day5"
  path = "src/day5/solve.rs"
+
+[[bin]]
+name = "day6"
+ path = "src/day6/solve.rs"
+
+[[bin]]
+name = "day7"
+ path = "src/day7/solve.rs"
